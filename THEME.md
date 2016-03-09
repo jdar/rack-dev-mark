@@ -83,3 +83,8 @@ Click the banner to remove it temporarily.
 `color`: red (default), orange, green, black
 
 `fixed`: `true` or `false`(default)
+
+`name`: "some string" (defaults to the environment. e.g. 'development')
+
+`request_info`: "/absolute/url/path?with=querystring" (defaults to the environment. e.g. 'development')
+

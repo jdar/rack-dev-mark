@@ -12,6 +12,17 @@ module Rack
           position = @options[:position] || 'left'
           color = @options[:color] || 'red'
           fixed = @options[:fixed] ? ' fixed' : ''
+
+          if @options[:name]
+            banner = "#{@options[:name]} "
+          else
+            banner = env
+          end
+
+          if @options[:request_info]
+            banner += " #{params[:request_env][@options[:request_info]]}"
+          end
+
           title = []
           title << revision if revision.to_s != ''
           title << timestamp if timestamp.to_s != ''
@@ -25,7 +36,7 @@ module Rack
           EOS
 
           div_tag_str = <<-EOS
-<div class="github-fork-ribbon-wrapper #{position}#{fixed}" onClick="this.style.display='none'" title="#{title}"><div class="github-fork-ribbon #{color}"><span class="github-fork-ribbon-text">#{env}</span></div></div>
+<div class="github-fork-ribbon-wrapper #{position}#{fixed}" onClick="this.style.display='none'" title="#{title}"><div class="github-fork-ribbon #{color}"><span class="github-fork-ribbon-text">#{banner}</span></div></div>
           EOS
 
           html

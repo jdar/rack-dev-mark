@@ -27,7 +27,7 @@ module Rack
           new_body = ''
           response.each do |b|
             begin
-              new_body << insert_dev_marks(b)
+              new_body << insert_dev_marks(b, env)
             rescue => e
               $stderr.write %Q|Failed to insert dev marks: #{e.message}\n  #{e.backtrace.join("  \n")}|
             end
@@ -42,9 +42,9 @@ module Rack
 
       private
 
-      def insert_dev_marks(body)
+      def insert_dev_marks(body, request_env)
         @themes.each do |theme|
-          body = theme.insert_into(body, Rack::DevMark.env, revision: @revision, timestamp: @timestamp)
+          body = theme.insert_into(body, Rack::DevMark.env, request_env: request_env, revision: @revision, timestamp: @timestamp)
         end
         body
       end
