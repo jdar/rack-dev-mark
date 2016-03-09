@@ -86,5 +86,5 @@ Click the banner to remove it temporarily.
 
 `name`: "some string" (defaults to the environment. e.g. 'development')
 
-`request_info`: "/absolute/url/path?with=querystring" (defaults to the environment. e.g. 'development')
+`request_info`: `ORIGINAL_FULLPATH` ("/absolute/url/path?with=querystring" ... defaults to: nothing added)
 
